@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Desenhe com Cores!</title>
+  <style>
+    canvas {
+      border: 2px solid #000;
+      background: #fff;
+      cursor: crosshair;
+    }
+    #controles {
+      margin-top: 10px;
+    }
+    button, input[type="color"], input[type="range"] {
+      margin: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Desenhe com lápis e borracha!</h2>
+
+  <canvas id="canvas" width="400" height="400"></canvas>
+
+  <div id="controles">
+    <label>Cor:
+      <input type="color" id="cor" value="#000000">
+    </label>
+    <label>Espessura:
+      <input type="range" id="espessura" min="1" max="30" value="5">
+    </label>
+    <button onclick="modo = 'lapis'">✏️ Lápis</button>
+    <button onclick="modo = 'borracha'">🧽 Borracha</button>
+    <button onclick="limparCanvas()">🧼 Limpar</button>
+  </div>
+
+  <script>
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+    let desenhando = false;
+    let modo = "lapis"; // ou "borracha"
+
+    canvas.addEventListener("mousedown", () => desenhando = true);
+    canvas.addEventListener("mouseup", () => desenhando = false);
+    canvas.addEventListener("mouseout", () => desenhando = false);
+
+    canvas.addEventListener("mousemove", desenhar);
+
+    function desenhar(e) {
+      if (!desenhando) return;
+
+      const cor = document.getElementById("cor").value;
+      const espessura = document.getElementById("espessura").value;
+      const rect = canvas.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      ctx.beginPath();
+      ctx.arc(x, y, espessura / 2, 0, Math.PI * 2);
+      ctx.fillStyle = modo === "borracha" ? "#fff" : cor;
+      ctx.fill();
+    }
+
+    function limparCanvas() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+  </script>
+</body>
+</html>
