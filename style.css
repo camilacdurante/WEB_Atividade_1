@@ -1,0 +1,11 @@
+canvas {
+    border: 2px solid #000;
+    background: #fff;
+    cursor: crosshair;
+}
+#controles {
+    margin-top: 10px;
+}
+button, input[type="color"], input[type="range"] {
+    margin: 5px;
+}
