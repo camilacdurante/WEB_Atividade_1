@@ -3,110 +3,52 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-  <title>Tragic Draw</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"></script>
+  <title>Performance de Centavos</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-  <h2>Tragic Draw</h2>
-  <h3>Faça um desenho e eu tentarei adivinhar!</h3>
-  <canvas id="canvas" width="400" height="400"></canvas>
+  <img class = "logo"src="logo2.jpg">
+  <h3 class="fraseEfeito">Head, shoulders, coins e frações, na Performance de Centavos, testamos mil funções!</h3>
 
-  <div id="controles">
-    <label>Cor:
-      <input type="color" id="cor" value="#000000">
-    </label>
-    <label>Espessura:
-      <input type="range" id="espessura" min="1" max="30" value="5">
-    </label>
-    <button onclick="modo = 'lapis'">✏️ Lápis</button>
-    <button onclick="modo = 'borracha'">🧽 Borracha</button>
-    <button onclick="limpar()">🫧 Limpar</button>
-    <button onclick="adivinhar()">🧠 Adivinhar</button>
+  <form action="">
+    <button class="home" type="submit" formaction="jogo.html">
+      Jogar
+    </button>
+  </form>
+
+  <div class="instrucoes">
+    <p>Instruções de jogo</p>
+    <ul>
+      <li>Resolva a equação matemática que aparece na tela</li>
+      <li>Verifique em qual quadrado está a resposta correspondente</li>
+      <li>Diga a localização do quadrado (em inglês)</li>
+      <li>Torça para ser bom em matemática</li>
+      <li>Weeeeeeeeeeeeeeeeee</ul>
+      </ul>
   </div>
-  <div id="results" class="result"></div>
+
+  <footer>
+    <p>&copy; 2025 Performance de Centavos: Brinque, aprenda e vença — em inglês e em números!</p>
+  </footer>
+
+  
+  
 
   <script>
-    const canvas = document.getElementById("canvas");
-    const ctx = canvas.getContext("2d");
-    let desenhando = false;
-    let modo = "lapis"; // ou "borracha"
-
-    canvas.addEventListener("mousedown", () => desenhando = true);
-    canvas.addEventListener("mouseup", () => desenhando = false);
-    canvas.addEventListener("mouseout", () => desenhando = false);
-
-    canvas.addEventListener("mousemove", desenhar);
-
-    function desenhar(e) {
-      if (!desenhando) return;
-
-      const cor = document.getElementById("cor").value;
-      const espessura = document.getElementById("espessura").value;
-      const rect = canvas.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-
-      ctx.beginPath();
-      ctx.arc(x, y, espessura / 2, 0, Math.PI * 2);
-      ctx.fillStyle = modo === "borracha" ? "#fff" : cor;
-      ctx.fill();
-    }
-
-    function limpar() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-    }
-
-    let cocoModel;
-
-    cocoSsd.load().then(m => {
-      cocoModel = m;
-      console.log('Object detection model loaded.');
-    });
-
-    function adivinhar() {
-      const canvas = document.getElementById("canvas");
-      const ctx = canvas.getContext("2d");
-      const resultDiv = document.getElementById("results");
-      resultDiv.innerHTML = 'Deixa eu pensar...';
-      //const predictions = cocoModel.detect(canvas); // passa canvas direto
-
-      cocoModel.detect(canvas).then(predictions => {
-            console.log('Predictions:', predictions);
-            drawBoxes(predictions, ctx);
-            displayResults(predictions);
-          });
-
-
-    }
-
-
-
-    function drawBoxes(predictions, ctx) {
-      ctx.lineWidth = 2;
-      ctx.font = '16px Arial';
-      predictions.forEach(p => {
-        ctx.strokeStyle = '#00FF00';
-        ctx.fillStyle = '#00FF00';
-        const [x, y, width, height] = p.bbox;
-        ctx.strokeRect(x, y, width, height);
-        ctx.fillText(`${p.class} (${(p.score * 100).toFixed(1)}%)`, x, y > 10 ? y - 5 : y + 15);
-      });
-    }
-
-    function displayResults(predictions) {
-      const resultDiv = document.getElementById('results');
-      if (predictions.length === 0) {
-        resultDiv.innerHTML = '<p>No objects detected.</p>';
-        return;
-      }
-
-      resultDiv.innerHTML = '<ul>' + predictions.map(p =>
-        `<li>${p.class}: ${(p.score * 100).toFixed(1)}%</li>`
-      ).join('') + '</ul>';
+    function mudaPagina(){
+      document.getElementById("boasorte").play();
+      window.location.href = "home.html";
     }
   </script>
+
+  <audio id="musica" volume="0.5">
+    <source src="musica.mp3" type="audio/mp3" />
+  </audio>
+
+  <script>
+    //document.getElementById("musica").play();
+  </script>
+
 </body>
 </html>
