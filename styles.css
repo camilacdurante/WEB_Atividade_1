@@ -1,22 +1,23 @@
+/*Determina a estilização de tudo que está dentro de body, como coloração de fundo da imagem, fonte, localização na tela, cor da fonte*/
 body { 
-    font-family: 
-    sans-serif; 
-    text-align: 
-    center; 
+    font-family: sans-serif; 
+    text-align: center; 
     margin-top: 30px; 
     position: relative; 
     height: 100vh; 
     background-color: #4A1762;
     color: #FDD94F;
 }
-#question { 
+/*Define o tamanho da fonte, localização e deixa em negrito a questão matemática*/
+#questao { 
     font-size: 30px; 
     margin-top: 40px; 
     font-weight: bold;
 }
-
+/*Determina o tamanho da fonte, cor da fonte, cor do fundo dos "quadrados" onde aparece as respostas*/
 .resposta {
-    width: 150px; height: 100px;
+    width: 150px; 
+    height: 100px;
     border: 2px solid #3B0B3F;
     display: flex;
     align-items: center;
@@ -28,12 +29,14 @@ body {
     background-color: #EFC58B;
     border-radius: 40px;
 }
-#up { top: 160px; left: 50%; transform: translateX(-50%); }
-#down { bottom: 75px; left: 50%; transform: translateX(-50%); }
-#left { left: 30%; top: 56%; transform: translateY(-50%); }
-#right { right: 30%; top:  56%; transform: translateY(-50%); }
+/*Define as localizações dos "quadrados" onde aparece as alternativas*/
+#up { top: 120px; left: 50%; transform: translateX(-50%); }
+#down { bottom: 100px; left: 50%; transform: translateX(-50%); }
+#left { left: 30%; top: 50%; transform: translateY(-50%); }
+#right { right: 30%; top:  50%; transform: translateY(-50%); }
 #status { margin-top: 20px; font-size: 18px; }
-  
+
+/*Determina a localização, a fonte, tamanho da fonte e localização das instruções*/
 .instrucoes{
     margin-top: 180px; 
     text-align: right;
@@ -44,55 +47,69 @@ body {
     margin-right: 20px;
     float: right;
 }
-
+/*Define algumas características para a lista de instruções, como transforma as bolinhas da lista em números e a posição das "bolinhas*/
 .instrucoes li{
-    text-decoration: dashed;
     list-style: decimal;
     list-style-position: inside;
 }
 
-  
+/*Determina a coloração do botão, o cursor quando passa o mouse por cima, a localização, a cor da fonte interna, a coloração da borda*/
 button{
     border-color: #360b3a;
     border-radius: 50px;
     background-color: #861581;
     color: #FDD94F;
     font-size: 12px;
-    size: 100px;
     height: 30px;
     width: 70px;
     margin-top: 15px;
     cursor: pointer;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
-  
+
+/*Define a coloração da fonte da escrita interna do botão, a coloração da borda e a coloração do botão para quando o mouse é passado por cima*/
 button:hover{
     border-color: #29082c;
     background-color: #3B0B3F;
     color: #a18b33;
 }
 
+/*Determina a localização e tamanho do logotipo na página inicial*/
 .logo{
     margin-top: 30px; 
-    height: 180px;
-    width: 180px;
-    text-align: center;
+    height: 240px;
+    width: 240px;
 }
 
+/*Define o estilo da fonte e o tamanho da frase de efeito presente na página inicial*/
 .fraseEfeito{
     font-style: italic;
     font-size: medium;
 }
 
+/*Determina o tamanho e localização do logotipo na página do jogo*/
 .logo2{
-    margin-top: 200px; 
+    position: absolute;
+    bottom: 260px;
+    left: 50%;
+    transform: translateX(-50%);
     height: 180px;
     width: 180px;
-    text-align: center;
-}
-#deuCerto{
-    position: relative;
 }
 
+/*Define o tamanho e posição da frase de feedback visual*/
+#deuCerto{
+    position: absolute; 
+    bottom: 65px;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 180px;
+    width: 250px;
+}
+
+/*Determina o tamnho e a localização do rodapé das páginas*/
 footer{
     margin-top: 330px;
     text-align: center;
@@ -100,5 +117,4 @@ footer{
     bottom:0;
     left:0;
     font-size: 11px;
-
 }
